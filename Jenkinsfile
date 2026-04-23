@@ -17,5 +17,12 @@ pipeline {
                 bat 'mvn test'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn sonar:sonar -Dsonar.projectKey=devops-projet -Dsonar.projectName="devops-projet"'
+                }
+            }
+        }
     }
 }
